@@ -49,7 +49,10 @@
 
 
 {% macro bs_navbar(brand=None, logo=None, url="/", collapse_id="bs-navbar-collapse", style="default", position=None, class_="", fluid=True) -%}
-  <nav class="navbar navbar-{{ style }}{% if position %} navbar-{{ position }}{% endif %} {{ class_ }}" role="navigation">
+  {% set navclass = "navbar navbar-%s" % style %}
+  {% if position %}{% set navclass = navclass + " navbar-" + position %}{% endif %}
+  {% do kwargs.setdefault('role', 'navigation') %}
+  {{ html_tag('nav', class_=navclass + " " + class_, **kwargs) }}
     <div class="container{% if fluid %}-fluid{% endif %}">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ collapse_id }}">
