@@ -5,7 +5,7 @@
     {% block header %}
       {% set navbar_brand = app.features.bootstrap.options.get("navbar_brand", app.config.get("TITLE", "Frasco App")) %}
       {% set navbar_logo = app.features.bootstrap.options.get("navbar_logo") %}
-      {% set navbar_url = app.features.bootstrap.options.get("navbar_url", url_for("main.index")) %}
+      {% set navbar_url = app.features.bootstrap.options.get("navbar_url", url_for("index")) %}
       {% set navbar_style = app.features.bootstrap.options.get("navbar_style", "inverse") %}
       {% set navbar_position = app.features.bootstrap.options.get("navbar_position", "static-top") %}
       <{ bs_navbar brand=navbar_brand logo=navbar_logo url=navbar_url style=navbar_style position=navbar_position fluid=bs_layout_fluid }>
