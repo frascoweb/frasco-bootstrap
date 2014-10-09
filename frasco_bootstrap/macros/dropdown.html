@@ -1,13 +1,19 @@
 {% from "__macros__/bootstrap/ui.html" import bs_btn %}
 
 
+{% macro bs_dropdown_items(menu_id="dropdown-menu", dropdown_right=False) -%}
+  <ul class="dropdown-menu{% if dropdown_right %} dropdown-menu-right{% endif %}" role="menu" aria-labelledby="{{ menu_id }}">
+    {{ caller() }}
+  </ul>
+{%- endmacro %}
+
+
 {% macro bs_dropdown_inner(label, menu_id="dropdown-menu", dropdown_right=False) -%}
   {% set label = label + ' <span class="caret"></span>' %}
   {% do kwargs.update(add_class="dropdown-toggle " + kwargs.get("add_class", "")) %}
   {{ bs_btn(label|safe, id=menu_id, data_toggle="dropdown", **kwargs) }}
-  <ul class="dropdown-menu{% if dropdown_right %} dropdown-menu-right{% endif %}" role="menu" aria-labelledby="{{ menu_id }}">
-    {{ caller() }}
-  </ul>
+  {% set c = caller %}
+  {% call bs_dropdown_items(menu_id, dropdown_right) %}{{ c() }}{% endcall %}
 {%- endmacro %}
 
 
@@ -29,11 +35,12 @@
 {%- endmacro %}
 
 
-{% macro bs_nav_dropdown(label) -%}
-  {% set c = caller %}
-  {% call bs_dropdown(label, wrapper_tag="li", tag_name="a", class_="dropdown-toggle", **kwargs) %}
-    {{ c() }}
-  {% endcall %}
+{% macro bs_nav_dropdown(label, id=None, dropdown_class="dropdown") -%}
+  {{ html_tag('li', class_=dropdown_class, id=id) }}
+    {% set c = caller %}
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ label }} <span class="caret"></span></a>
+    {% call bs_dropdown_items(**kwargs) %}{{ c() }}{% endcall %}
+  </{{ wrapper_tag }}>
 {%- endmacro %}
 
 

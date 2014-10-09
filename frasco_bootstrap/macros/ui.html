@@ -18,7 +18,9 @@
   {% set c = caller %}
   {% do kwargs.setdefault("role", "button") %}
   {% if disabled %}{% do kwargs.update(add_class="disabled " + kwargs.get("add_class", "")) %}{% endif %}
-  {% call bs_btn(tag_name="a", href=url, **kwargs) %}{% if label %}{{ label }}{% else %}{{ c() }}{% endif %}{% endcall %}
+  {% call bs_btn(tag_name="a", href=url, **kwargs) %}
+    {% if label %}{{ label }}{% else %}{{ c() }}{% endif %}
+  {% endcall %}
 {%- endmacro %}
 
 
