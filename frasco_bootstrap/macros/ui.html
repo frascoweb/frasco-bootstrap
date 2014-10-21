@@ -116,13 +116,18 @@
 {%- endmacro %}
 
 
-{% macro bs_page_header(title, subtext=None, url=None, icon=None) -%}
+{% macro bs_page_header(title=None, subtext=None, url=None, icon=None) -%}
   <div class="page-header">
     <h1>
-      {% if url %}<a href="{{ url }}">{% endif %}
-      {% if icon %}{{ ico(icon) }}{% endif %}
-      {{ title }}{% if subtext %} <small>{{ subtext }}</small>{% endif %}</h1>
-      {% if url %}</a>{% endif %}
+      {% if caller %}
+        {{ caller() }}
+      {% else %}
+        {% if url %}<a href="{{ url }}">{% endif %}
+        {% if icon %}{{ ico(icon) }}{% endif %}
+        {{ title }}{% if subtext %} <small>{{ subtext }}</small>{% endif %}
+        {% if url %}</a>{% endif %}
+      {% endif %}
+    </h1>
   </div>
 {%- endmacro %}
 

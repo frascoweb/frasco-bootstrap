@@ -1,6 +1,5 @@
 {% extends "users/layout.html" %}
-{% block title %}{{ _("Login") }} | {{ super() }}{% endblock %}
-{% block pageheader %}<{ bs_page_header _("Login") }/>{% endblock %}
+{% block users_title %}{{ _('Login') }}{% endblock %}
 {% block users_content %}
 <{ bs_hform form }>
   <{ bs_form_hfield form.email.email(_("Email"), required=True) }/>
