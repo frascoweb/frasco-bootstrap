@@ -183,8 +183,9 @@
 
 
 {% macro bs_form_btn(label="Submit", use_cols=False, lbl_col_width=2) -%}
+  {% set attrs = kwargs %}
   {% call bs_form_buttons(use_cols=use_cols, lbl_col_width=lbl_col_width) %}
-    {{ bs_btn(label, type="submit", **kwargs) }}
+    {{ bs_btn(label, type="submit", **attrs) }}
   {% endcall %}
 {%- endmacro %}
 
