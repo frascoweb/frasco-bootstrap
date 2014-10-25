@@ -35,7 +35,7 @@ class BootstrapFeature(Feature):
                 "@jquery-cdn",
                 "@bootstrap-all-cdn"],
             "font-awesome-cdn": [
-                "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"]})
+                "https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"]})
 
         if self.options["auto_assets"]:
             if self.options["with_fontawesome"]:
