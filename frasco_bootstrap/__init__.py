@@ -39,11 +39,11 @@ class BootstrapFeature(Feature):
 
         if self.options["auto_assets"]:
             if self.options["with_fontawesome"]:
-                app.assets.defaults.insert(0, "@font-awesome-cdn")
+                app.features.assets.add_default("@font-awesome-cdn")
             if self.options["with_jquery"]:
-                app.assets.defaults.insert(0, "@jquery-bootstrap-all-cdn")
+                app.features.assets.add_default("@jquery-bootstrap-all-cdn")
             else:
-                app.assets.defaults.insert(0, "@bootstrap-all-cdn")
+                app.features.assets.add_default("@bootstrap-all-cdn")
 
     @hook()
     def before_request(self):
