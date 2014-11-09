@@ -56,8 +56,11 @@
 
 
 {% macro bs_dropdown_item(url="#", label=None, active=False, disabled=False) -%}
-  <li role="presentation" class="{% if active %}active{% endif %}{% if disabled %} disabled{% endif %}"><a role="menuitem" tabindex="-1" href="{{ url }}">
-    {% if label %}{{ label }}{% else %}{{ caller() }}{% endif %}</a></li>
+  <li role="presentation" class="{% if active %}active{% endif %}{% if disabled %} disabled{% endif %}">
+    {{ html_tag("a", role="menuitem", tabindex="-1", href=url, **kwargs) }}
+      {% if label %}{{ label }}{% else %}{{ caller() }}{% endif %}
+    </a>
+  </li>
 {%- endmacro %}
 
 
