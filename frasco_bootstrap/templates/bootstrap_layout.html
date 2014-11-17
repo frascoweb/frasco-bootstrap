@@ -1,7 +1,7 @@
 {% extends "assets_layout.html" %}
 
 {% block page_body %}
-  <body>
+  {% block body_tag %}<body>{% endblock %}
     {% block header %}
       {% set navbar_brand = app.features.bootstrap.options.get("navbar_brand", app.config.get("TITLE", "Frasco App")) %}
       {% set navbar_logo = app.features.bootstrap.options.get("navbar_logo") %}
