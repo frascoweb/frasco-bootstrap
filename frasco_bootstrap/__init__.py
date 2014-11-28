@@ -10,7 +10,10 @@ class BootstrapFeature(Feature):
     defaults = {"auto_assets": True,
                 "with_jquery": True,
                 "with_fontawesome": False,
-                "fluid_layout": False}
+                "fluid_layout": False,
+                "bootstrap_version": "3.3.1",
+                "jquery_version": "2.1.1",
+                "fontawesome_version": "4.2.0"}
 
     def init_app(self, app):
         path = os.path.dirname(__file__)
@@ -20,22 +23,22 @@ class BootstrapFeature(Feature):
 
         app.assets.register({
             "bootstrap-cdn": [
-                "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css",],
+                "https://maxcdn.bootstrapcdn.com/bootstrap/%s/css/bootstrap.min.css" % self.options['bootstrap_version']],
             "bootstrap-theme-cdn": [
-                "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"],
+                "https://maxcdn.bootstrapcdn.com/bootstrap/%s/css/bootstrap-theme.min.css" % self.options['bootstrap_version']],
             "bootstrap-js-cdn": [
-                "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"],
+                "https://maxcdn.bootstrapcdn.com/bootstrap/%s/js/bootstrap.min.js" % self.options['bootstrap_version']],
             "bootstrap-all-cdn": [
                 "@bootstrap-cdn",
                 "@bootstrap-theme-cdn",
                 "@bootstrap-js-cdn"],
             "jquery-cdn": [
-                "https://code.jquery.com/jquery-2.1.1.min.js"],
+                "https://code.jquery.com/jquery-%s.min.js" % self.options['jquery_version']],
             "jquery-bootstrap-all-cdn": [
                 "@jquery-cdn",
                 "@bootstrap-all-cdn"],
             "font-awesome-cdn": [
-                "https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"]})
+                "https://maxcdn.bootstrapcdn.com/font-awesome/%s/css/font-awesome.min.css" % self.options['fontawesome_version']]})
 
         if self.options["auto_assets"]:
             if self.options["with_fontawesome"]:
