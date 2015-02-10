@@ -42,9 +42,10 @@
 {%- endmacro %}
 
 
-{% macro bs_form_static_field(label, value, use_cols=False) -%}
+{% macro bs_form_static_field(label, value=None, use_cols=False) -%}
+  {% set c = caller %}
   {% call bs_form_group(label, use_cols=use_cols, **kwargs) %}
-    <p class="form-control-static">{{ value }}</p>
+    <p class="form-control-static">{{ c() if c else value }}</p>
   {% endcall %}
 {%- endmacro %}
 
