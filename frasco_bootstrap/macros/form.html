@@ -1,10 +1,10 @@
 {% from "__macros__/bootstrap/ui.html" import ico, bs_btn %}
 
 
-{% macro bs_form(form=None, action="", method="POST", role="form") -%}
+{% macro bs_form(form=None, action="", method="POST", role="form", hidden_tags=True) -%}
   {% if form %}{% do kwargs.setdefault("enctype", form.enctype) %}{% endif %}
   {{ html_tag("form", action=action, method=method, role=role, **kwargs) }}
-    {% if form %}{{ form.hidden_tag() }}{% endif %}
+    {% if form and hidden_tags %}{{ form.hidden_tag() }}{% endif %}
     {{ caller() }}
   </form>
 {%- endmacro %}
@@ -74,7 +74,7 @@
     {% do attrs.setdefault('placeholder', field.label.text) %}
   {% endif %}
 
-  {% if field.type == 'HiddenField' %}
+  {% if field.type in ('HiddenField', 'CSRFTokenField') %}
     {{ field() }}
   {% else %}
     {% call bs_form_field_group(field, inline, has_feedback=((field.errors and not icon) or (inline and icon)), use_cols=use_cols, size=size) %}
