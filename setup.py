@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='frasco-bootstrap',
-    version='0.1.1',
+    version='0.1.2',
     url='http://github.com/frascoweb/frasco-bootstrap',
     license='MIT',
     author='Maxime Bouroumeau-Fuseau',
