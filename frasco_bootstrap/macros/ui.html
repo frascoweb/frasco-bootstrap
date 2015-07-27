@@ -76,7 +76,7 @@
 {%- endmacro %}
 
 
-{% macro bs_pagination(page, prev_page=None, next_page=None, pages, endpoint=None, request_args=None, size=None) -%}
+{% macro bs_pagination(page, pages, prev_page=None, next_page=None, endpoint=None, request_args=None, size=None) -%}
   {% set endpoint = endpoint or request.endpoint %}
   {% set request_args = request_args or request.args %}
   <ul class="pagination{% if size %} pagination-{{ size }}{% endif %}">
@@ -103,7 +103,7 @@
 
 {% macro bs_pagination_obj(pagination) -%}
   {% if pagination.nb_pages > 1 %}
-    {{ bs_pagination(pagination.page, pagination.prev_page, pagination.next_page, pagination.iter_pages(), **kwargs) }}
+    {{ bs_pagination(pagination.page, pagination.iter_pages(), pagination.prev_page, pagination.next_page, **kwargs) }}
   {% endif %}
 {%- endmacro %}
 
