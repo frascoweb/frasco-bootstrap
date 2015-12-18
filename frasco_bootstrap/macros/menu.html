@@ -17,7 +17,9 @@
       {% endcall %}
     {% elif not item.separator %}
       <li class="{{ active }}">
-        <a href="{{ item.url() }}">{% if item.icon %}{{ ico(item.icon) }} {% endif %}{{ item.label }}</a>
+        {{ html_tag('a', href=item.url(), **item.options.get('html_attrs', {})) }}
+          {% if item.icon %}{{ ico(item.icon) }} {% endif %}{{ item.label }}
+        </a>
       </li>
     {% endif %}
   {% endif %}
